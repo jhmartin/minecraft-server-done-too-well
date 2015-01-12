@@ -1,0 +1,18 @@
+[Unit]
+Description=Minecraft server
+After=syslog.target
+RequiresMountsFor=/minecraft
+
+[Service]
+ExecStart=/bin/java -Xmx1024M -Xms1024M -jar /minecraft/bin/minecraft_server.jar nogui
+WorkingDirectory=/minecraft/var
+User=minecraft
+Group=minecraft
+PrivateTmp=true
+NoNewPrivileges=true
+InaccessibleDirectories=/home
+ReadOnlyDirectories=/bin /lib /usr /etc
+ReadWriteDirectories=/minecraft
+
+[Install]
+WantedBy=multi-user.target
