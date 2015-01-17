@@ -1,0 +1,14 @@
+[Unit]
+Description=NewRelic service
+After=syslog.target
+
+[Service]
+ExecStart=/usr/sbin/nrsysmond -c /etc/newrelic/nrsysmond.cfg -f
+WorkingDirectory=/
+User=newrelic
+Group=newrelic
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
