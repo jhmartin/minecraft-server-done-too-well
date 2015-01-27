@@ -1,0 +1,21 @@
+init_config:
+      conf:
+            - include:
+                domain: java.lang
+                type: MemoryPool
+            - include:
+                domain: java.lang
+                type: Threading
+            - include:
+                domain: java.lang
+                type: GarbageCollector
+            - include:
+                domain: java.lang
+                type: Threading
+            - include:
+                domain: java.nio
+                type: BufferPool
+
+instances:
+     - host: localhost
+       port: 9010
