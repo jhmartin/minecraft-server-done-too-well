@@ -1,18 +1,18 @@
 [Unit]
-Description=Minecraft server
+Description=Daemon to detect crashing apps
 After=syslog.target
 RequiresMountsFor=/minecraft
 
 [Service]
-ExecStart=/bin/java -Xmx1024M -Xms1024M -jar /minecraft/bin/minecraft_server.jar nogui
+ExecStart=/bin/java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -javaagent:../newrelic/newrelic.jar -Xmx1024M -Xms1024M -jar /minecraft/bin/minecraft_server.jar nogui
 WorkingDirectory=/minecraft/var
 User=minecraft
 Group=minecraft
 PrivateTmp=true
 NoNewPrivileges=true
 InaccessibleDirectories=/home
-ReadOnlyDirectories=/bin /lib /usr /etc
-ReadWriteDirectories=/minecraft
+ReadOnlyDirectories=/bin /lib /usr /etc /
+ReadWriteDirectories=/minecraft/var
 
 [Install]
 WantedBy=multi-user.target
